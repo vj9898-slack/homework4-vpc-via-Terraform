@@ -76,3 +76,39 @@ resource "aws_subnet" "hw4-subnet2-private" {
         Name = "hw4-subnet2-private"
     }
 }
+
+resource "aws_route_table" "hw4-public-route-table" {
+    vpc_id = aws_vpc.hw4_vpc.id
+
+    route {
+        cidr_block = "0.0.0.0/0"
+        gateway_id = aws_internet_gateway.hw4_igw.id
+    }
+
+    tags = {
+        Name = "hw4-public-route-table"
+    }
+}
+
+resource "aws_route_table" "hw4-private-route-table" {
+    vpc_id = aws_vpc.hw4_vpc.id
+
+    route {
+        cidr_block = "0.0.0.0/0"
+        gateway_id = aws_internet_gateway.hw4_igw.id
+    }
+
+    tags = {
+        Name = "hw4-private-route-table"
+    }
+}
+
+resource "aws_route_table_association" "hw4-public-association" {
+    subnet_id: aws_subnet.hw4-subnet1-public.id
+    route_table_id: aws_route_table.hw4-public-route-table.id
+}
+
+resource "aws_route_table_association" "hw4-private-association" {
+    subnet_id: aws_subnet.hw4-subnet1-private.id
+    route_table_id: aws_route_table.hw4-private-route-table.id
+}
