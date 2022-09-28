@@ -36,3 +36,43 @@ resource "aws_internet_gateway" "hw4_igw"{
         Name = "hw4_igw"
     }
 }
+
+resource "aws_subnet" "hw4-subnet1-public" {
+    vpc_id = aws_vpc.hw4_vpc.id
+    cidr_block = "10.0.0.0/26"
+    map_public_ip_on_launch = "false"
+    availability_zone = "us-east-1a"
+    tags = {
+        Name = "hw4-subnet1-public"
+    }
+}
+
+resource "aws_subnet" "hw4-subnet2-public" {
+    vpc_id = aws_vpc.hw4_vpc.id
+    cidr_block = "10.0.0.64/26"
+    map_public_ip_on_launch = "false" 
+    availability_zone = "us-east-1a"
+    tags = {
+        Name = "hw4-subnet2-public"
+    }
+}
+
+resource "aws_subnet" "hw4-subnet1-private" {
+    vpc_id = aws_vpc.hw4_vpc.id
+    cidr_block = "10.0.0.128/26"
+    map_public_ip_on_launch = "false" 
+    availability_zone = "us-east-1a"
+    tags = {
+        Name = "hw4-subnet1-private"
+    }
+}
+
+resource "aws_subnet" "hw4-subnet2-private" {
+    vpc_id = aws_vpc.hw4_vpc.id
+    cidr_block = "10.0.0.192/26"
+    map_public_ip_on_launch = "false" 
+    availability_zone = "us-east-1a"
+    tags = {
+        Name = "hw4-subnet2-private"
+    }
+}
