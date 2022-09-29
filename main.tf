@@ -113,26 +113,26 @@ resource "aws_route_table" "hw4-private-route-table" {
 
 // Public Route Table Association
 resource "aws_route_table_association" "hw4-public-association" {
-    subnet_id: aws_subnet.hw4-subnet1-public.id
-    route_table_id: aws_route_table.hw4-public-route-table.id
+    subnet_id = aws_subnet.hw4-subnet1-public.id
+    route_table_id =  aws_route_table.hw4-public-route-table.id
 }
 
 // Public Route Table Association
 resource "aws_route_table_association" "hw4-public-association" {
-    subnet_id: aws_subnet.hw4-subnet2-public.id
-    route_table_id: aws_route_table.hw4-public-route-table.id
+    subnet_id = aws_subnet.hw4-subnet2-public.id
+    route_table_id = aws_route_table.hw4-public-route-table.id
 }
 
 // Private Route Table Association
 resource "aws_route_table_association" "hw4-private-association" {
-    subnet_id: aws_subnet.hw4-subnet1-private.id
-    route_table_id: aws_route_table.hw4-private-route-table.id
+    subnet_id = aws_subnet.hw4-subnet1-private.id
+    route_table_id = aws_route_table.hw4-private-route-table.id
 }
 
 // Private Route Table Association
 resource "aws_route_table_association" "hw4-private-association" {
-    subnet_id: aws_subnet.hw4-subnet2-private.id
-    route_table_id: aws_route_table.hw4-private-route-table.id
+    subnet_id = aws_subnet.hw4-subnet2-private.id
+    route_table_id = aws_route_table.hw4-private-route-table.id
 }
 
 // NAT Gateway
