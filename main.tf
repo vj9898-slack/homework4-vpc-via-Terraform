@@ -164,9 +164,7 @@ resource "aws_nat_gateway" "hw4-nat-gateway" {
 
 // Elastic IP
 resource "aws_eip" "hw4-elastic-ip" {
-    instance = aws_instance.hw4-ec2-instance.id
     vpc      = true
-
 
 }
 
