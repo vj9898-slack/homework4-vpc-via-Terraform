@@ -10,9 +10,9 @@ terraform {
 }
 
 provider "aws" {
-  access_key = “COPY_YOUR_ACCESS_KEY“
-  secret_key = "COPY_YOUR_SECRET_KEY"
-  token = “COPY_YOUR_TOKEN_HERE”
+  access_key = "ASIAY2QMXMEZ7S7ENUEH"
+  secret_key = "MjkiivxCj9J6MBx2ujUzyUAieQD7pn6w5DEaJsF0"
+  token = "FwoGZXIvYXdzEJT//////////wEaDGZSXrfbnfN4mmX9MiK8ATuckzhtek7+W/LaDDYmvJmOmsnR4RBVgYcUJpGQrhQEuVbPpu9Gh8fvCrWqNz2r9seSui00wusRXhoRi6e0F57RtzRVCEc8AuJsV4OKaPZtlx40L/V5enmDNsE+tL599peTLEBexwrZGwtYKRoFsFlNbgJXPgyOThiMKNx1/mV8P+RVjM/AVVmtAh9ASY5x1Kt6WkSJGCt6h9qmVDfucQ5gKM/MxW3BDCVaISp7It+4w7N9RObtzKnvNx0LKPr/05kGMi1KpkcBFqJofowmj2Ifxgbbp46D62Pf7apA3mjmDl5DasyM5zX9gtuBhiwrWII="
   region  = "us-east-1"
 }
 
@@ -159,4 +159,21 @@ resource "aws_instance" "hw4-ec2-instance" {
     depends_on = [aws_internet_gateway.hw4_igw]
 }
 
-// need security group for EC2 here
+// Security Group
+resource "aws_security_group" "hw4-security-group" {
+    name        = "hw4-security-group"
+    description = "Allow TLS inbound traffic"
+    vpc_id      = aws_vpc.hw4_vpc.id
+
+    ingress {
+        description      = "Enable SSH access via port 22"
+        from_port        = 22
+        to_port          = 22
+        protocol         = "tcp"
+        cidr_blocks      = [aws_vpc.hw4_vpc.cidr_block]
+    }
+
+    tags = {
+        Name = "hw4-security-group"
+    }
+}
