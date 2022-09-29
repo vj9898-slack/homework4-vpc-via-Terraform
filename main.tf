@@ -112,25 +112,25 @@ resource "aws_route_table" "hw4-private-route-table" {
 }
 
 // Public Route Table Association
-resource "aws_route_table_association" "hw4-public-association" {
+resource "aws_route_table_association" "hw4-public-association-1" {
     subnet_id = aws_subnet.hw4-subnet1-public.id
     route_table_id =  aws_route_table.hw4-public-route-table.id
 }
 
 // Public Route Table Association
-resource "aws_route_table_association" "hw4-public-association" {
+resource "aws_route_table_association" "hw4-public-association-2" {
     subnet_id = aws_subnet.hw4-subnet2-public.id
     route_table_id = aws_route_table.hw4-public-route-table.id
 }
 
 // Private Route Table Association
-resource "aws_route_table_association" "hw4-private-association" {
+resource "aws_route_table_association" "hw4-private-association-1" {
     subnet_id = aws_subnet.hw4-subnet1-private.id
     route_table_id = aws_route_table.hw4-private-route-table.id
 }
 
 // Private Route Table Association
-resource "aws_route_table_association" "hw4-private-association" {
+resource "aws_route_table_association" "hw4-private-association-2" {
     subnet_id = aws_subnet.hw4-subnet2-private.id
     route_table_id = aws_route_table.hw4-private-route-table.id
 }
