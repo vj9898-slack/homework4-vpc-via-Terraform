@@ -153,7 +153,7 @@ resource "aws_eip" "hw4-elastic-ip" {
     instance = aws_instance.hw4-ec2-instance.id
     vpc      = true
 
-    depends_on = []
+    depends_on = [aws_internet_gateway.hw4_igw]
 }
 
 // EC2 Instance
