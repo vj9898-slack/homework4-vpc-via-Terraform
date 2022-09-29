@@ -16,6 +16,20 @@ provider "aws" {
   region  = "us-east-1"
 }
 
+// EC2 Instance
+resource "aws_instance" "hw4-ec2-instance" {
+
+    // Amazon Linux 2 Kernel 5.10 AMI 2.0.20220912.1 x86_64 HVM gp2
+    ami           = "ami-026b57f3c383c2eec" 
+    instance_type = "t2.micro"
+    associate_public_ip_address = true
+    
+    tags = {
+        Name = "hw4-ec2-instance"
+    }
+
+}
+
 // VPC
 resource "aws_vpc" "hw4_vpc"{
 
@@ -43,7 +57,7 @@ resource "aws_internet_gateway" "hw4_igw"{
 resource "aws_subnet" "hw4-subnet1-public" {
     vpc_id = aws_vpc.hw4_vpc.id
     cidr_block = "10.0.0.0/26"
-    map_public_ip_on_launch = "false"
+    map_public_ip_on_launch = "true"
     availability_zone = "us-east-1a"
     tags = {
         Name = "hw4-subnet1-public"
@@ -54,7 +68,7 @@ resource "aws_subnet" "hw4-subnet1-public" {
 resource "aws_subnet" "hw4-subnet2-public" {
     vpc_id = aws_vpc.hw4_vpc.id
     cidr_block = "10.0.0.64/26"
-    map_public_ip_on_launch = "false" 
+    map_public_ip_on_launch = "true" 
     availability_zone = "us-east-1a"
     tags = {
         Name = "hw4-subnet2-public"
@@ -65,7 +79,7 @@ resource "aws_subnet" "hw4-subnet2-public" {
 resource "aws_subnet" "hw4-subnet1-private" {
     vpc_id = aws_vpc.hw4_vpc.id
     cidr_block = "10.0.0.128/26"
-    map_public_ip_on_launch = "false" 
+    map_public_ip_on_launch = "true" 
     availability_zone = "us-east-1a"
     tags = {
         Name = "hw4-subnet1-private"
@@ -76,7 +90,7 @@ resource "aws_subnet" "hw4-subnet1-private" {
 resource "aws_subnet" "hw4-subnet2-private" {
     vpc_id = aws_vpc.hw4_vpc.id
     cidr_block = "10.0.0.192/26"
-    map_public_ip_on_launch = "false" 
+    map_public_ip_on_launch = "true" 
     availability_zone = "us-east-1a"
     tags = {
         Name = "hw4-subnet2-private"
@@ -153,20 +167,6 @@ resource "aws_eip" "hw4-elastic-ip" {
     instance = aws_instance.hw4-ec2-instance.id
     vpc      = true
 
-
-}
-
-// EC2 Instance
-resource "aws_instance" "hw4-ec2-instance" {
-
-    // Amazon Linux 2 Kernel 5.10 AMI 2.0.20220912.1 x86_64 HVM gp2
-    ami           = "ami-026b57f3c383c2eec" 
-    instance_type = "t2.micro"
-    
-
-    tags = {
-        Name = "hw4-ec2-instance"
-    }
 
 }
 
