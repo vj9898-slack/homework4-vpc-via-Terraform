@@ -153,7 +153,7 @@ resource "aws_eip" "hw4-elastic-ip" {
     instance = aws_instance.hw4-ec2-instance.id
     vpc      = true
 
-    depends_on = [aws_internet_gateway.hw4_igw]
+
 }
 
 // EC2 Instance
@@ -162,13 +162,12 @@ resource "aws_instance" "hw4-ec2-instance" {
     // Amazon Linux 2 Kernel 5.10 AMI 2.0.20220912.1 x86_64 HVM gp2
     ami           = "ami-026b57f3c383c2eec" 
     instance_type = "t2.micro"
+    
 
     tags = {
         Name = "hw4-ec2-instance"
     }
 
-    // To ensure proper ordering
-    depends_on = [aws_internet_gateway.hw4_igw]
 }
 
 // Security Group
